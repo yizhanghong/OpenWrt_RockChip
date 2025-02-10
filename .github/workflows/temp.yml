@@ -154,7 +154,6 @@ jobs:
         make download -j8
         
     - name: Generate Firmware
-      if: steps.compile.outputs.COMPILE_STATUS == 'success'
       id: generate
       run: |
         cd $OPENWRTROOT

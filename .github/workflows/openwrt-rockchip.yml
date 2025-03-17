@@ -243,6 +243,7 @@ jobs:
         popd
         make checksum
         mv bin/targets/rockchip/armv8/sha256sums bin/targets/rockchip/armv8/full-sha256sums
+        tar -zcvf bin/targets/rockchip/armv8/dl.tar.gz ./dl
         echo "GENERATE_STATUS=success" >> $GITHUB_OUTPUT
         
     - name: Generate release tag
@@ -268,7 +269,7 @@ jobs:
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2
       with:
-          token: ${{ env.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           retain_days: 1
           keep_minimum_runs: 1
 

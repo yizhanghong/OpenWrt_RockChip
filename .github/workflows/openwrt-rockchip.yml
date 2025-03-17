@@ -261,7 +261,7 @@ jobs:
       with:
         name: "${{ steps.tag.outputs.release_date }} openwrt-rockchip-armv8 下载固件"
         tag: "${{ steps.tag.outputs.release_tag }}"
-        token: ${{ secrets.TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: "${{ env.FIRMWARE }}/*"
         bodyFile: "release.txt"
 
@@ -279,4 +279,4 @@ jobs:
           keep_latest: 20
           delete_tags: true
       env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

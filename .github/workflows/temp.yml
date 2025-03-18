@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: openwrt-rockchip
+name: openwrt-rockchip-temp
 
 on:
   repository_dispatch:

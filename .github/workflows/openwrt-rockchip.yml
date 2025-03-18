@@ -254,7 +254,6 @@ jobs:
         popd
         make checksum
         mv bin/targets/rockchip/armv8/sha256sums bin/targets/rockchip/armv8/full-sha256sums
-        tar -zcvf bin/targets/rockchip/armv8/dl.tar.gz ./dl
         echo "GENERATE_STATUS=success" >> $GITHUB_OUTPUT
         
     - name: Generate release tag

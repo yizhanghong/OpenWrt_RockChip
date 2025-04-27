@@ -148,6 +148,10 @@ jobs:
         git clone --depth=1 https://github.com/coolsnowwolf/luci customfeeds/luci
         chmod +x ../scripts/*.sh
         ../scripts/hook-feeds.sh
+        #jenet-lu脚本
+        sed -i "s/hostname='OpenWrt'/hostname='JENET'/g" ./package/base-files/files/bin/config_generate
+        rm -rf target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-opc-h69k.dts
+        cp -f $GITHUB_WORKSPACE/configs/lede/jenet-lu.dts target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-opc-h69k.dts
         
     - name: Install Feeds
       run: |
@@ -161,7 +165,7 @@ jobs:
         chmod +x scripts/*.sh
         cd $OPENWRTROOT
         ../$DIY_SH
-        ../scripts/jenet-lu.sh
+        #../scripts/jenet-lu.sh
         ../scripts/preset-clash-core.sh arm64
         ../scripts/preset-terminal-tools.sh
         git clone https://github.com/sirpdboy/luci-app-poweroffdevice package/luci-app-poweroffdevice

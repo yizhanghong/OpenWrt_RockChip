@@ -26,7 +26,6 @@ env:
   REPO_BRANCH: stable
   CONFIG_FILE: configs/lede/jenet-lu.config
   DIY_SH: scripts/lede.sh
-  DIY_SH2: scripts/jenet-lu.sh
   KMODS_IN_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
@@ -162,7 +161,7 @@ jobs:
         chmod +x scripts/*.sh
         cd $OPENWRTROOT
         ../$DIY_SH
-        ../$DIY_SH2
+        ../scripts/jenet-lu.sh
         ../scripts/preset-clash-core.sh arm64
         ../scripts/preset-terminal-tools.sh
         git clone https://github.com/sirpdboy/luci-app-poweroffdevice package/luci-app-poweroffdevice

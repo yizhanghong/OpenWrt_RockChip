@@ -160,6 +160,7 @@ jobs:
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
         chmod +x scripts/*.sh
+        chmod +x configs/lede/*.sh
         cd $OPENWRTROOT
         ../$DIY_SH
         ../$DIY_SH2

@@ -26,6 +26,7 @@ env:
   REPO_BRANCH: stable
   CONFIG_FILE: configs/lede/jenet-lu.config
   DIY_SH: scripts/lede.sh
+  DIY_SH2: scripts/jenet-lu.sh
   KMODS_IN_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
@@ -133,7 +134,7 @@ jobs:
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        git clone https://github.com/leafxdd/OpenWrt_RockChip.git 1
+        git clone https://github.com/yizhanghong/OpenWrt_RockChip.git 1
         cp -r /home/runner/work/OpenWrt_RockChip/OpenWrt_RockChip/1/* /home/runner/work/OpenWrt_RockChip/OpenWrt_RockChip/
         cd openwrt
         
@@ -148,10 +149,6 @@ jobs:
         git clone --depth=1 https://github.com/coolsnowwolf/luci customfeeds/luci
         chmod +x ../scripts/*.sh
         ../scripts/hook-feeds.sh
-        #jenet-lu脚本
-        sed -i "s/hostname='OpenWrt'/hostname='JENET'/g" ./package/base-files/files/bin/config_generate
-        rm -rf target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-opc-h69k.dts
-        cp -f ../configs/lede/jenet-lu.dts target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-opc-h69k.dts
         
     - name: Install Feeds
       run: |
@@ -165,7 +162,7 @@ jobs:
         chmod +x scripts/*.sh
         cd $OPENWRTROOT
         ../$DIY_SH
-        #../scripts/jenet-lu.sh
+        ../$DIY_SH2
         ../scripts/preset-clash-core.sh arm64
         ../scripts/preset-terminal-tools.sh
         git clone https://github.com/sirpdboy/luci-app-poweroffdevice package/luci-app-poweroffdevice
